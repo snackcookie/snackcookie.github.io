@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이민후 | Portfolio</title>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --bg-soft: #111827;
+        --card: rgba(255, 255, 255, 0.06);
+        --line: rgba(255, 255, 255, 0.12);
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --point: #38bdf8;
+        --point-soft: rgba(56, 189, 248, 0.14);
+        --max-width: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+        background:
+          radial-gradient(
+            circle at top,
+            rgba(56, 189, 248, 0.12),
+            transparent 25%
+          ),
+          linear-gradient(180deg, #020617 0%, #0f172a 35%, #111827 100%);
+        color: var(--text);
+        line-height: 1.65;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(var(--max-width), calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(12px);
+        background: rgba(2, 6, 23, 0.72);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 72px;
+        gap: 20px;
+      }
+
+      .brand {
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .menu {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
+
+      .menu a:hover {
+        color: var(--point);
+      }
+
+      section {
+        padding: 92px 0;
+      }
+
+      .hero {
+        min-height: calc(100vh - 72px);
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-wrap {
+        display: grid;
+        grid-template-columns: 1.35fr 0.9fr;
+        gap: 36px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        padding: 8px 14px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--point-soft);
+        color: var(--point);
+        font-size: 0.9rem;
+        margin-bottom: 18px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        line-height: 1.2;
+      }
+
+      h1 {
+        font-size: clamp(2.6rem, 5vw, 4.8rem);
+        letter-spacing: -0.04em;
+      }
+
+      .hero p {
+        margin: 20px 0 0;
+        color: var(--muted);
+        font-size: 1.08rem;
+        max-width: 760px;
+      }
+
+      .hero-highlight {
+        color: var(--point);
+      }
+
+      .hero-card,
+      .card,
+      .timeline-item,
+      .contact-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+      }
+
+      .hero-card {
+        padding: 28px;
+      }
+
+      .profile-box {
+        aspect-ratio: 1 / 1;
+        border-radius: 22px;
+        background: linear-gradient(
+          135deg,
+          rgba(56, 189, 248, 0.22),
+          rgba(99, 102, 241, 0.14)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: grid;
+        place-items: center;
+        font-size: 1rem;
+        color: var(--muted);
+        overflow: hidden;
+      }
+
+      .profile-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-meta {
+        display: grid;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .hero-meta div {
+        padding: 14px 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 16px;
+        color: var(--muted);
+      }
+
+      .hero-meta strong {
+        color: var(--text);
+      }
+
+      .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 28px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 20px;
+        border-radius: 14px;
+        font-weight: 600;
+        transition: 0.2s ease;
+      }
+
+      .btn-primary {
+        background: var(--point);
+        color: #082f49;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.05);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--line);
+        color: var(--text);
+      }
+
+      .btn-secondary:hover {
+        border-color: rgba(56, 189, 248, 0.4);
+        color: var(--point);
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: end;
+        margin-bottom: 28px;
+      }
+
+      .section-head h2 {
+        font-size: clamp(1.9rem, 3vw, 2.7rem);
+      }
+
+      .section-head p {
+        color: var(--muted);
+        max-width: 560px;
+        margin: 0;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .card {
+        padding: 26px;
+      }
+
+      .card h3 {
+        font-size: 1.12rem;
+        margin-bottom: 12px;
+      }
+
+      .card p,
+      .card li,
+      .timeline-item p,
+      .contact-card p {
+        color: var(--muted);
+      }
+
+      .tag-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .tag {
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 0.92rem;
+      }
+
+      .project-list {
+        display: grid;
+        gap: 22px;
+      }
+
+      .project-card {
+        display: grid;
+        grid-template-columns: 1fr 1.25fr;
+        gap: 24px;
+        padding: 26px;
+      }
+
+      .project-thumb {
+        min-height: 230px;
+        border-radius: 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(56, 189, 248, 0.14),
+          rgba(255, 255, 255, 0.03)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: grid;
+        place-items: center;
+        color: var(--muted);
+        text-align: center;
+        padding: 20px;
+      }
+
+      .project-info h3 {
+        font-size: 1.4rem;
+      }
+
+      .project-info .desc {
+        margin: 14px 0;
+      }
+
+      .project-meta {
+        display: grid;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .project-meta div {
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .project-links {
+        display: flex;
+        gap: 12px;
+        margin-top: 18px;
+        flex-wrap: wrap;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 18px;
+      }
+
+      .timeline-item {
+        padding: 22px 24px;
+      }
+
+      .timeline-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .timeline-date {
+        color: var(--point);
+        font-size: 0.94rem;
+        font-weight: 700;
+      }
+
+      .contact-card {
+        padding: 28px;
+      }
+
+      .contact-list {
+        display: grid;
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .contact-item {
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      footer {
+        padding: 30px 0 60px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      @media (max-width: 960px) {
+        .hero-wrap,
+        .project-card,
+        .grid-2,
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+
+        .section-head {
+          align-items: start;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .nav {
+          padding: 14px 0;
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .menu {
+          gap: 12px;
+          font-size: 0.9rem;
+        }
+
+        section {
+          padding: 72px 0;
+        }
+
+        .hero {
+          min-height: auto;
+          padding-top: 32px;
+        }
+
+        .card,
+        .hero-card,
+        .project-card,
+        .timeline-item,
+        .contact-card {
+          border-radius: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <a href="#home" class="brand">MINHU PORTFOLIO</a>
+        <nav class="menu">
+          <a href="#about">Introduction</a>
+          <a href="#skills">SkillSet</a>
+          <a href="#projects">Portfolio</a>
+          <a href="#awards">Awards</a>
+          <a href="#certifications">Certification</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="container hero-wrap">
+          <div>
+            <span class="eyebrow">Backend Developer Portfolio</span>
+            <h1>
+              안녕하세요.<br />
+              꾸준히 성장하는 <span class="hero-highlight">신입 개발자</span
+              ><br />
+              이민후입니다.
+            </h1>
+            <p>
+              Java와 Spring Boot 기반의 백엔드 개발을 공부하며, 기능 구현을 넘어
+              구조와 유지보수성을 함께 고민하는 개발자가 되기 위해 노력하고
+              있습니다. 프로젝트 경험과 학습 과정을 기록하고, 문제 해결 경험을
+              포트폴리오에 정리했습니다.
+            </p>
+            <div class="button-group">
+              <a class="btn btn-primary" href="#projects">프로젝트 보기</a>
+              <a class="btn btn-secondary" href="#contact">연락처 보기</a>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <div class="profile-box">
+              <!-- 프로필 사진 넣으려면 아래 주석 해제 후 경로 수정 -->
+              <!-- <img src="./images/profile.jpg" alt="프로필 사진" /> -->
+              <span>프로필 이미지 영역</span>
+            </div>
+            <div class="hero-meta">
+              <div>
+                <strong>희망 직무</strong><br />백엔드 개발자 / 웹 개발자
+              </div>
+              <div>
+                <strong>핵심 기술</strong><br />Java, Spring Boot, JPA, MySQL,
+                GitHub
+              </div>
+              <div>
+                <strong>관심 분야</strong><br />REST API, 데이터 처리, 유지보수
+                가능한 서비스 구조
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Introduction</h2>
+            </div>
+            <p>
+              본인을 소개하는 영역입니다. 전공, 학습 방향, 개발자로서 중요하게
+              생각하는 가치, 그리고 어떤 문제를 해결하고 싶은 사람인지 간단하고
+              명확하게 적으면 좋습니다.
+            </p>
+          </div>
+
+          <div class="grid-2">
+            <article class="card">
+              <h3>About Me</h3>
+              <p>
+                컴퓨터 관련 전공을 바탕으로 웹 개발과 백엔드 기술을
+                공부해왔습니다. 새로운 기술을 단순히 사용하는 것보다, 왜 그렇게
+                동작하는지 이해하고 적용하는 과정을 중요하게 생각합니다.
+              </p>
+              <p>
+                최근에는 Spring Boot 기반 API 개발, 데이터베이스 설계, 예외
+                처리, 인증/인가 흐름 등에 관심을 가지고 학습하고 있습니다.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Strength</h3>
+              <p>
+                맡은 작업을 끝까지 정리하는 습관이 있으며, 기능 구현 후에도
+                구조를 다시 점검하고 개선점을 찾는 편입니다. 또한 모르는 부분은
+                기록하고 반복 학습하면서 실력을 쌓아가는 스타일입니다.
+              </p>
+              <div class="tag-wrap">
+                <span class="tag">꾸준한 학습</span>
+                <span class="tag">문제 해결</span>
+                <span class="tag">기록 습관</span>
+                <span class="tag">협업 의식</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>SkillSet</h2>
+            </div>
+            <p>
+              자신 있게 설명할 수 있는 기술 위주로 작성하는 것이 좋습니다.
+              사용해본 수준이 아니라, 프로젝트에서 어떤 방식으로 활용했는지
+              연결되도록 적으세요.
+            </p>
+          </div>
+
+          <div class="grid-3">
+            <article class="card">
+              <h3>Language</h3>
+              <div class="tag-wrap">
+                <span class="tag">Java</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">SQL</span>
+                <span class="tag">HTML/CSS</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <h3>Backend</h3>
+              <div class="tag-wrap">
+                <span class="tag">Spring Boot</span>
+                <span class="tag">Spring MVC</span>
+                <span class="tag">JPA / Hibernate</span>
+                <span class="tag">REST API</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <h3>Database & Tools</h3>
+              <div class="tag-wrap">
+                <span class="tag">MySQL</span>
+                <span class="tag">Git / GitHub</span>
+                <span class="tag">Postman</span>
+                <span class="tag">IntelliJ</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Portfolio</h2>
+            </div>
+            <p>
+              프로젝트는 2~4개 정도가 적당합니다. 각 프로젝트마다 기능 설명보다
+              맡은 역할, 사용 기술, 트러블슈팅, 개선 경험이 보이도록 작성하는
+              것이 좋습니다.
+            </p>
+          </div>
+
+          <div class="project-list">
+            <article class="project-card card">
+              <div class="project-thumb">프로젝트 이미지 / 썸네일 영역</div>
+              <div class="project-info">
+                <h3>프로젝트명 01</h3>
+                <p class="desc">
+                  예시: 상품 검색 및 정렬 기능을 제공하는 웹 서비스입니다.
+                  사용자 요청에 따라 데이터를 조회하고, 조건별 필터링 및
+                  페이지네이션을 처리했습니다.
+                </p>
+                <div class="tag-wrap">
+                  <span class="tag">Java</span>
+                  <span class="tag">Spring Boot</span>
+                  <span class="tag">JPA</span>
+                  <span class="tag">MySQL</span>
+                </div>
+                <div class="project-meta">
+                  <div>
+                    <strong>담당 역할</strong><br />API 설계, DB 연동, 검색/정렬
+                    기능 구현
+                  </div>
+                  <div>
+                    <strong>문제 해결</strong><br />정렬 파라미터 처리 과정에서
+                    발생한 예외를 수정하고 요청 형식을 개선
+                  </div>
+                  <div>
+                    <strong>배운 점</strong><br />기능 구현뿐 아니라 예외 처리와
+                    요청/응답 구조 설계의 중요성을 경험
+                  </div>
+                </div>
+                <div class="project-links">
+                  <a class="btn btn-secondary" href="#">GitHub</a>
+                  <a class="btn btn-secondary" href="#">Demo</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card card">
+              <div class="project-thumb">프로젝트 이미지 / 썸네일 영역</div>
+              <div class="project-info">
+                <h3>프로젝트명 02</h3>
+                <p class="desc">
+                  예시: 사용자 인증과 게시글 관리를 포함한 커뮤니티
+                  서비스입니다. CRUD, 로그인 처리, 권한에 따른 접근 제어를
+                  구현했습니다.
+                </p>
+                <div class="tag-wrap">
+                  <span class="tag">Java</span>
+                  <span class="tag">Spring Boot</span>
+                  <span class="tag">Thymeleaf</span>
+                  <span class="tag">MySQL</span>
+                </div>
+                <div class="project-meta">
+                  <div>
+                    <strong>담당 역할</strong><br />로그인, 게시글 CRUD, 예외
+                    처리, 화면 연동
+                  </div>
+                  <div>
+                    <strong>문제 해결</strong><br />엔티티 매핑 및 컬럼명
+                    불일치로 인한 SQL 오류 해결
+                  </div>
+                  <div>
+                    <strong>배운 점</strong><br />백엔드와 DB 스키마의 일관성이
+                    서비스 안정성에 직결된다는 점을 체감
+                  </div>
+                </div>
+                <div class="project-links">
+                  <a class="btn btn-secondary" href="#">GitHub</a>
+                  <a class="btn btn-secondary" href="#">Demo</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="awards">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Awards</h2>
+            </div>
+            <p>
+              수상 경험이 없다면 교육 이수, 대외활동, 팀 프로젝트 성과 등으로
+              대체해도 됩니다.
+            </p>
+          </div>
+
+          <div class="timeline">
+            <article class="timeline-item">
+              <div class="timeline-top">
+                <h3>수상명 또는 활동명</h3>
+                <span class="timeline-date">2025.00</span>
+              </div>
+              <p>
+                예시: 교내 프로젝트 경진대회 참가 / 팀 프로젝트 우수상 / 해커톤
+                수료 등
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="certifications">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Certification</h2>
+            </div>
+            <p>
+              자격증과 시험 준비 내역을 정리하는 영역입니다. 취업 준비 흐름이
+              보이도록 작성하면 좋습니다.
+            </p>
+          </div>
+
+          <div class="timeline">
+            <article class="timeline-item">
+              <div class="timeline-top">
+                <h3>SQLD</h3>
+                <span class="timeline-date">취득 / 예정일 입력</span>
+              </div>
+              <p>
+                데이터 모델, SQL 활용, 데이터베이스 기본 지식에 대한 이해를
+                검증하는 자격입니다.
+              </p>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-top">
+                <h3>OPIc</h3>
+                <span class="timeline-date">취득 / 예정일 입력</span>
+              </div>
+              <p>
+                영어 말하기 능력을 증명하는 시험으로, 목표 등급과 준비 중인 내용
+                등을 간단히 적을 수 있습니다.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Contact</h2>
+            </div>
+            <p>
+              실제 지원 시에는 연락 가능한 이메일, GitHub, 블로그 또는 노션
+              링크를 넣으세요.
+            </p>
+          </div>
+
+          <div class="contact-card">
+            <h3>함께 일할 기회를 기다리고 있습니다.</h3>
+            <p>
+              백엔드 개발자로 성장하며, 더 나은 구조와 안정적인 서비스를 만드는
+              데 기여하고 싶습니다. 포트폴리오에 대해 궁금한 점이 있다면
+              언제든지 연락 부탁드립니다.
+            </p>
+            <div class="contact-list">
+              <div class="contact-item">
+                <strong>Email</strong><br />your-email@example.com
+              </div>
+              <div class="contact-item">
+                <strong>GitHub</strong><br />https://github.com/your-id
+              </div>
+              <div class="contact-item">
+                <strong>Blog / Notion</strong><br />https://your-link.com
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">? 2026 MINHU PORTFOLIO. All rights reserved.</div>
+    </footer>
+  </body>
+</html>
